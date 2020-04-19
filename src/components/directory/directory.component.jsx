@@ -49,9 +49,14 @@ class Directory extends React.Component {
     render() {
         return(
             <div className='directory-menu'>
-                {this.state.sections.map(({ title, imageUrl, id, size }) => (
-                        <MenuItem key={id} title={title} imageUrl={imageUrl} size={size}/>
+                {/*Aby użyć takiego sposobu destrukturyzacji, nazwa propsa musi odpowiadać nazwie, którą chcemy nadać, dlatego key i id nie może być tak zrobione*/}
+                {this.state.sections.map(({ id, ...otherSectionProps }) => (
+                    <MenuItem key={id} {...otherSectionProps} />
                 ))}
+
+                {/*{this.state.sections.map(({ title, imageUrl, id, size }) => (*/}
+                {/*        <MenuItem key={id} title={title} imageUrl={imageUrl} size={size}/>*/}
+                {/*))}*/}
             </div>
         )
     }
