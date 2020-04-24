@@ -25,7 +25,7 @@ class SignUp extends React.Component {
         const {displayName, email, password, confirmPassword} = this.state;
 
         if(password !== confirmPassword) {
-            alert("passwors don't match");
+            alert("passwords don't match");
             return;
         }
 
@@ -36,7 +36,7 @@ class SignUp extends React.Component {
             );
 
             //dzieki await aplikacja czeka, aż asynchroniczna metoda createUserProfileDocument() się wykona
-            await createUserProfileDocument(user, {displayName});
+            await createUserProfileDocument(user, { displayName });
 
             this.setState({
                 displayName: '',

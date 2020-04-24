@@ -49,8 +49,6 @@ class App extends React.Component {
                       //     console.log(this.state)
                       // }
                   });
-
-                  console.log(this.state);
               //    dzięki zapisaniu obiektu w state, możemy nasłuchiwać zmian w tym obiekcie
               });
             //  jeżeli jednam userAuth jest nullem, aplikacja ustawia currentUser jako userAuth.
