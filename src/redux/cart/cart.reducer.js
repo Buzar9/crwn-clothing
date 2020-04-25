@@ -1,7 +1,8 @@
 import CartActionTypes from './cart.types'
 
 const INITIAL_STATE = {
-    hidden: true
+    hidden: true,
+    cartItems: []
 };
 
 const cartReducer = (state = INITIAL_STATE, action) => {
@@ -10,7 +11,13 @@ const cartReducer = (state = INITIAL_STATE, action) => {
           return {
               ...state,
               hidden: !state.hidden
-          }
+          };
+        case CartActionTypes.ADD_ITEM:
+            return {
+                ...state,
+                //tworzy nowy obiekt z nową listą złożoną ze wszystkich poprzednich cartItems + nowy cartItem
+                cartItems: [...state.cartItems, action.payload]
+            };
         default:
             return state;
     }
