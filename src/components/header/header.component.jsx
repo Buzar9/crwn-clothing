@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { auth } from '../../firebase/firebase.utils'
 import CartIcon from "../cart-icon/cart-icon.component";
+import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 
@@ -33,6 +34,7 @@ const Header = ({ currentUser }) => (
             )}
             <CartIcon />
         </div>
+        <CartDropdown/>
     </div>
 );
 // state = root-reducer i metoda przesyła obiekt currentUser który jest pobierany z root-reducer, który odwołuje się do name user, który odwołuje się do user-reducer, który to
