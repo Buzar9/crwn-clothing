@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import './App.css';
@@ -57,7 +57,7 @@ class App extends React.Component {
     //
     //           // gdy createUserProfileDocument() skopiuje dane użytkownika z logowania google do naszej bazy danych,
     //           //  następnie ustawia użytkownika jako zalogowanego w aplikacji
-    //           userRef.onSnapshot(snapShot => {
+     //           userRef.onSnapshot(snapShot => {
     //               //dopóki nie wywoła się .data() snapShot nie udostępni danych dokumentu
     //               // console.log(snapShot.data());
     //
@@ -94,16 +94,24 @@ class App extends React.Component {
             <Switch>
                 <Route exact path="/" component={HomePage} />
                 <Route path="/shop" component={ShopPage} />
-                <Route path="/signin" component={SignInAndSignUpPage} />
+                <Route exact path="/signin" render= {() => this.props.currentUser ? (<Redirect to='/'/>) : (<SignInAndSignUpPage/>)} />
             </Switch>
         </div>
       );
     }
 }
 
+// mapuje root-reducer na propsy componentu Appact
+const mapStateToProps = ({ user }) => ({
+    currentUser: user.currentUser
+})
+
 //metoda, która obudowuje nam wysyłane dane w odpowiednią formę (obiekt z typem akcji/ tutaj z user.actions.js)
 const mapDispatchToProps = dispatch => ({
     setCurrentUser: user => dispatch(setCurrentUser(user))
-})
+});
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(App);
