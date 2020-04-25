@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import { auth } from '../../firebase/firebase.utils'
 
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 
 import './header.styles.scss'
+
 
 const Header = ({ currentUser }) => (
     <div className='header'>
@@ -32,5 +34,12 @@ const Header = ({ currentUser }) => (
         </div>
     </div>
 );
+// state = root-reducer i metoda przesyła obiekt currentUser który jest pobierany z root-reducer, który odwołuje się do name user, który odwołuje się do user-reducer, który to
+// zwraca odpowiedni obiekt
+const mapStateToProps = state => ({
+    currentUser: state.user.currentUser
+})
 
-export default Header;
+// connect to komponent funkcyjny modyfikujący komponenty, tutaj pierwszym argumentem jest funkcja odwołująca się do pobrania obiektu z root-reducer, a drugim komponent, który
+// chcemy zmienić
+export default connect(mapStateToProps)(Header);
