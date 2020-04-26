@@ -7,6 +7,7 @@ import storage from 'redux-persist/lib/storage'
 
 import userReducer from "./user/user.reducer";
 import cartReducer from "./cart/cart.reducer";
+import directoryReducer from "./directory/directory.reducer";
 
 // root-reducer to po prostu zbiorowy eksport wszystkich reducers
 
@@ -24,7 +25,8 @@ const persistConfig = {
 //Jeżeli używamy persist, musimy exportować rootReducer wraz z persistConfig
 const rootReducer = combineReducers({
     user: userReducer,
-    cart: cartReducer
+    cart: cartReducer,
+    directory: directoryReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);
