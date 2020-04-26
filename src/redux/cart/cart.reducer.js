@@ -8,11 +8,13 @@ const INITIAL_STATE = {
 
 const cartReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
+
         case CartActionTypes.TOGGLE_CART_HIDDEN:
           return {
               ...state,
               hidden: !state.hidden
           };
+
         case CartActionTypes.ADD_ITEM:
             return {
                 ...state,
@@ -21,6 +23,14 @@ const cartReducer = (state = INITIAL_STATE, action) => {
 
                 //tworzy nowy obiekt z nową listą złożoną ze wszystkich poprzednich cartItems + nowy cartItem
                 // cartItems: [...state.cartItems, action.payload]
+            };
+
+        case CartActionTypes.CLEAR_ITEM_FROM_CART:
+            return {
+                ...state,
+                cartItems: state.cartItems.filter(
+                    cartItem => cartItem.id !== action.payload.id
+                )
             };
         default:
             return state;
