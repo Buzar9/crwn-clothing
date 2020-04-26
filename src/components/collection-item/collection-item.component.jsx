@@ -8,6 +8,7 @@ import './collection-item.styles.scss';
 
 const CollectionItem = ({ item, addItem }) => {
     const { name, price, imageUrl } = item;
+
     return (
         <div className='collection-item'>
             <div
@@ -25,7 +26,7 @@ const CollectionItem = ({ item, addItem }) => {
             </CustomButton>
         </div>
     );
-}
+};
 
 const mapDispatchToProps = dispatch => ({
     // z każdym wywołaniem addItem w collection-item, "item" będzie przekazywany jako props do metody addItem z cart.actions, później automatycznie dispatch do store
